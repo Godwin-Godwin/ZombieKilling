@@ -1,0 +1,183 @@
+.gameSpace
+{
+    height: 580px;
+    width: 400px;
+    border-radius: 3%;
+    background-image: url("images/wood_wall1.jpg");
+    display: grid;
+    grid-template-rows: 15% 1fr;
+}
+
+
+.statusBar
+{
+    background-color: cornflowerblue; 
+    border-top-left-radius: 15px;   
+    border-top-right-radius: 15px; 
+    display: grid;
+    grid-template-rows: 1fr 1fr;  
+}
+
+.area1
+{
+    display: grid;
+    grid-template-columns: 10% auto;
+    background: -webkit-linear-gradient(left,rgb(158, 143, 143),rgb(240, 240, 191),rgb(223, 151, 151));
+    background: -moz-linear-gradient(left,rgb(158, 143, 143),rgb(240, 240, 191),rgb(223, 151, 151));
+    background: -o-linear-gradient(left,rgb(158, 143, 143),rgb(240, 240, 191),rgb(223, 151, 151));
+
+}
+
+.area2
+{
+    display: grid;
+    grid-template-columns: 40% 60%;
+    background: -webkit-linear-gradient(left,rgb(148, 160, 180), white,rgb(181, 189, 204));
+    background: -moz-linear-gradient(left,rgb(148, 160, 180), white,rgb(181, 189, 204));
+    background: -o-linear-gradient(left,rgb(148, 160, 180), white,rgb(181, 189, 204));
+}
+
+.GoBackMenu
+{
+    display: grid;
+    align-items: center;
+    place-items: center; 
+}
+
+.GoBackMenuButton
+{
+    border: 0px;
+}
+
+.gameName
+{
+    display: grid;
+    align-items: center;
+    place-items: center; 
+}
+
+.pause
+{
+    display: grid;
+    align-items: center;
+}
+
+.score
+{
+    align-self: center;
+    justify-self: end;
+}
+
+.game
+{
+    display: grid;
+    grid-template-rows: 10% 10%;
+    align-content: space-between;
+   
+}
+
+.modal-body
+{
+    display: grid;
+    grid-template-rows: 30% 70%;
+    height: 300px;
+
+}
+
+.endGameZombie
+{
+    background: url("images/zombie.gif") no-repeat;
+    background-size: 60% 100%;
+}
+
+.grant
+{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.receptionHoles
+{
+    display: grid;
+    bottom: 0px;
+    background-image: url("images/Black_Space.gif");
+
+}
+
+.senderHoles
+{
+    display: grid;
+    grid-template-columns: 20% 20%;
+    justify-content: space-around;
+
+   
+}
+
+.topLeftHole
+{
+    background-image: url("images/panierBasket.png");
+    background-size: 100% 100%;
+    width: 150px;
+    height: 80px;
+    position: relative;
+    right: 40%;
+    top: -30%;
+    display: grid;
+    place-items: center;
+    
+
+}
+
+.topRightHole
+{
+    background-image: url("images/panierBasket.png");
+    background-size: 100% 100%;
+    width: 150px;
+    height: 80px;
+    position: relative;
+    right: 40%;
+    top: -30%;
+    display: grid;
+    place-items: center;
+    
+}
+
+.tank
+{
+    background-image: url("images/plotdeMarquage.png");
+    background-size: 100% 100%;
+    width: 150px;
+    height: 80px;
+    position: relative;
+    bottom: 28%;
+    display: grid;
+    place-items: center;
+    border: blueviolet 1px solid;
+}
+
+
+.senderHoles >  * img
+{
+    width: 30px;
+    height: 30px;
+    position: relative;
+}
+
+.receptionHoles >  * img
+{
+    width: 50px;
+    height: 60px;
+    position: relative;
+}
+
+#zombieInModal
+{
+    background: -webkit-linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)), url("images/zombie.gif") no-repeat;
+    background: -moz-linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url("images/zombie.gif") no-repeat;
+    background: -o-linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url("images/zombie.gif") no-repeat;
+    height: 200px;
+    background-size: 60% 100%;
+    color: white;
+}

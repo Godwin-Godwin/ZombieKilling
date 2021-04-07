@@ -29,8 +29,16 @@
     transform: scale(1.15);
 }
 
-.modal-body
+.startClick
 {
+    
+    z-index: 100;
+    border-radius: 5px;
+    position: absolute;
+    top: 40%;
+    left: 5%;
+    box-shadow: 1px 1px 30px black;
+    text-align: center;
     background: -webkit-linear-gradient(left,rgb(158, 143, 143),rgb(240, 240, 191),rgb(223, 151, 151));
     background: -moz-linear-gradient(left,rgb(158, 143, 143),rgb(240, 240, 191),rgb(223, 151, 151));
     background: -o-linear-gradient(left,rgb(158, 143, 143),rgb(240, 240, 191),rgb(223, 151, 151));

@@ -98,7 +98,7 @@
     justify-content: space-between;
 }
 
-.receptionHoles
+.receptionHole
 {
     display: grid;
     bottom: 0px;
@@ -106,7 +106,7 @@
 
 }
 
-.senderHoles
+.senderHole
 {
     display: grid;
     grid-template-columns: 20% 20%;
@@ -115,7 +115,7 @@
    
 }
 
-.topLeftHole
+.Hole
 {
     background-image: url("images/panierBasket.png");
     background-size: 100% 100%;
@@ -126,22 +126,6 @@
     top: -30%;
     display: grid;
     place-items: center;
-    
-
-}
-
-.topRightHole
-{
-    background-image: url("images/panierBasket.png");
-    background-size: 100% 100%;
-    width: 150px;
-    height: 80px;
-    position: relative;
-    right: 40%;
-    top: -30%;
-    display: grid;
-    place-items: center;
-    
 }
 
 .tank
@@ -157,14 +141,14 @@
 }
 
 
-.senderHoles >  * img
+.senderHole >  * img
 {
     width: 30px;
     height: 30px;
     position: relative;
 }
 
-.receptionHoles >  * img
+.receptionHole >  * img
 {
     width: 50px;
     height: 60px;

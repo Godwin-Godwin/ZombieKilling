@@ -70,12 +70,11 @@
                 </div>
             </div>
             <div class="game">
-                <div class="senderHoles">
-                    <div class="topLeftHole"></div>
-                    <div class="topRightHole"></div>
+                <div class="senderHole">
+                    <div class="Hole"></div>
                 </div>
                 
-                <div class="receptionHoles">
+                <div class="receptionHole">
                     <div class="tank"></div>
                 </div>
                 
@@ -92,7 +91,7 @@
             
             let score = 0;
             let numberOfZombieKilled = 0;
-            let leftheadCoordinatesTop = "";
+            let headCoordinatesTop = "";
             let zombieAttackSound = document.getElementById("zombieAttackSound");
             let lostSong = document.getElementById("lostSong");
             let shoutingSong = document.getElementById("shoutingSong");
@@ -124,53 +123,34 @@
                     let randNumber = Math.round(Math.random()*3);
                     randNumber = (randNumber == 0) ? randNumber+1 : randNumber;
 
-                    let leftZombi = document.createElement("img");
-                    leftZombi.id = "leftZombi";
-                    leftZombi.src = "images/teteZombie"+randNumber+".png";
-                    leftZombi.alt = "#";
-                    document.querySelector(".topLeftHole").appendChild(leftZombi);
-                    $(".topLeftHole img:last").animate({top:"440px",zIndex:"10"},1000).fadeOut(500);
-                    
-                    
-                    setTimeout(function(){
-                        let rightZombi = document.createElement("img");
-                        rightZombi.id = "rightZombi";
-                        rightZombi.src = "images/teteZombie"+randNumber+".png";
-                        rightZombi.alt = "#";
-                        document.querySelector(".topRightHole").appendChild(rightZombi);
-                        $(".topRightHole img:last").animate({top:"440px",zIndex:"10"},1000).fadeOut(500);
-                    },1000);
+                    let Zombi = document.createElement("img");
+                    Zombi.id = "Zombi";
+                    Zombi.src = "images/teteZombie"+randNumber+".png";
+                    Zombi.alt = "#";
+                    document.querySelector(".Hole").appendChild(Zombi);
+                    $(".Hole img:last").animate({top:"440px",zIndex:"10"},1000).fadeOut(500);
 
 
                 }
                 
                 function pos()
                 {
-                    var leftheadPosition1 =  $(".topLeftHole img:last").offset().top;
-                    var leftheadPosition2 =  $(".topLeftHole img:last").offset().left;
-                    var leftheadPosition3 =  $(".topLeftHole img:last").outerHeight();
-                    var leftheadPosition4 =  $(".topLeftHole img:last").outerWidth();
-                    var leftheadPlusHeihgt = leftheadPosition1 + leftheadPosition3;
-                    var leftheadPlusWidth = leftheadPosition2 + leftheadPosition4;
-                  
-                    var rightheadPosition1 =  $(".topRightHole img:last").offset().top;
-                    var rightheadPosition2 =  $(".topRightHole img:last").offset().left;
-                    var rightheadPosition3 =  $(".topRightHole img:last").outerHeight();
-                    var rightheadPosition4 =  $(".topRightHole img:last").outerWidth();
-                    var rightheadPlusHeihgt = rightheadPosition1 + rightheadPosition3;
-                    var rightheadPlusWidth = rightheadPosition2 + rightheadPosition4;
+                    var headPosition1 =  $(".Hole img:last").offset().top;
+                    var headPosition2 =  $(".Hole img:last").offset().left;
+                    var headPosition3 =  $(".Hole img:last").outerHeight();
+                    var headPosition4 =  $(".Hole img:last").outerWidth();
+                    var headPlusHeihgt = headPosition1 + headPosition3;
+                    var headPlusWidth = headPosition2 + headPosition4;
 
-                    var receptionHolesPosition1 =  $(".receptionHoles").offset().top;
-                    var receptionHolesPosition2 =  $(".receptionHoles").offset().left;
-                    var receptionHolesPosition3 =  $(".receptionHoles").outerHeight();
-                    var receptionHolesPosition4 =  $(".receptionHoles").outerWidth();
-                    var receptionHolesPlusHeihgt = receptionHolesPosition1 + receptionHolesPosition3;
-                    var receptionHolesPlusWidth = receptionHolesPosition2 + receptionHolesPosition4;
+                    var receptionHolePosition1 =  $(".receptionHole").offset().top;
+                    var receptionHolePosition2 =  $(".receptionHole").offset().left;
+                    var receptionHolePosition3 =  $(".receptionHole").outerHeight();
+                    var receptionHolePosition4 =  $(".receptionHole").outerWidth();
+                    var receptionHolePlusHeihgt = receptionHolePosition1 + receptionHolePosition3;
+                    var receptionHolePlusWidth = receptionHolePosition2 + receptionHolePosition4;
                   
-                    if(!(leftheadPlusHeihgt < receptionHolesPosition1 || leftheadPosition1 > receptionHolesPlusHeihgt
-                    || leftheadPosition2 > receptionHolesPlusWidth || leftheadPlusWidth < receptionHolesPosition2 
-                    || (rightheadPlusHeihgt < receptionHolesPosition1 && rightheadPosition1 > receptionHolesPlusHeihgt
-                    && rightheadPosition2 > receptionHolesPlusWidth && rightheadPlusWidth < receptionHolesPosition2))) 
+                    if(!(headPlusHeihgt < receptionHolePosition1 || headPosition1 > receptionHolePlusHeihgt
+                    || headPosition2 > receptionHolePlusWidth || headPlusWidth < receptionHolePosition2)) 
                     {   
                         fallingNumber += 1; 
                                   
@@ -211,23 +191,12 @@
                     var gunshotPlusHeihgt = gunshotPosition1 + gunshotPosition3;
                     var gunshotPlusWidth = gunshotPosition2 + gunshotPosition4;
                     
-                    if(!(leftheadPlusHeihgt < gunshotPosition1 && leftheadPosition1 > gunshotPlusHeihgt
-                    && leftheadPosition2 > gunshotPlusWidth && leftheadPlusWidth < gunshotPosition2))
+                    if(!(headPlusHeihgt < gunshotPosition1 && headPosition1 > gunshotPlusHeihgt
+                    && headPosition2 > gunshotPlusWidth && headPlusWidth < gunshotPosition2))
                     {
                         
                         $(".tank img:first").remove();
-                        $(".topLeftHole img:last").remove();
-                        numberOfZombieKilled += 1;
-                        score += 50;
-                        document.getElementById("timeScore").textContent = score;
-                    }
-
-                    if(!(rightheadPlusHeihgt < gunshotPosition1 && rightheadPosition1 > gunshotPlusHeihgt
-                    && rightheadPosition2 > gunshotPlusWidth && rightheadPlusWidth < gunshotPosition2))
-                    {
-                        
-                        $(".tank img:first").remove();
-                        $(".topRightHole img").remove();
+                        $(".Hole img:last").remove();
                         numberOfZombieKilled += 1;
                         score += 50;
                         document.getElementById("timeScore").textContent = score;
@@ -259,8 +228,8 @@
                     let downkeyCode = downkey.which || downkey.keyCode;
                     if(downkeyCode == 37)
                     {
-                        let containerLeft =  $(".receptionHoles").offset().left;
-                        let containerWidth =  $(".receptionHoles").outerWidth();
+                        let containerLeft =  $(".receptionHole").offset().left;
+                        let containerWidth =  $(".receptionHole").outerWidth();
                         let containerPlusWidth =  containerLeft + containerWidth;
 
                         let tankPositionLeft =  $(".tank").offset().left;
@@ -272,9 +241,7 @@
                         if(answerForcasted >= containerLeft)
                         {
                             $(".tank").animate({left:"-=30px"},50);
-                        }
-                        
-                        
+                        }                
                         
                     } 
                 
@@ -284,8 +251,8 @@
                     let downkeyCode = downkey.which || downkey.keyCode;
                     if(downkeyCode == 39)
                     {
-                        let containerLeft =  $(".receptionHoles").offset().left;
-                        let containerWidth =  $(".receptionHoles").outerWidth();
+                        let containerLeft =  $(".receptionHole").offset().left;
+                        let containerWidth =  $(".receptionHole").outerWidth();
                         let containerPlusWidth =  containerLeft + containerWidth;
 
                         let tankPositionLeft =  $(".tank").offset().left;
@@ -301,10 +268,7 @@
                         
                     }
                     
-                }); 
-                
-
-                
+                });               
         });
     </script>
 </body>

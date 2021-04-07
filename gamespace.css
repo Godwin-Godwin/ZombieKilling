@@ -146,15 +146,14 @@
 
 .tank
 {
-    background-image: url("images/plotdeMarquage.png");
+    background-image: url("images/vaisseau2.png");
     background-size: 100% 100%;
     width: 150px;
-    height: 80px;
+    height: 180px;
     position: relative;
     bottom: 28%;
     display: grid;
     place-items: center;
-    border: blueviolet 1px solid;
 }
 
 

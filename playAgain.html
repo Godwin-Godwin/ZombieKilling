@@ -11,25 +11,6 @@
     <title>Zombie Killing</title>
 </head>
 <body>
-    <div id="myModal" class="modal">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <p class="modal-title">
-                        Bienvenu dans ce petit programme de jeu Zombie Killing
-                    </p>
-                </div>
-                <div id="zombieInModal" class="modal-body">
-                    Une armée de Zombie...
-                </div>
-                <div class="modal-footer d-flex justify-content-between">
-                    <button class="stopPlaying btn btn-secondary">QUITTER</button>
-                    <button class="startPlaying btn btn-secondary">GO POUR LA TUERIE</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <div id="gamePauseModal" class="modal">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -97,9 +78,6 @@
             let lostSong = document.getElementById("lostSong");
             let shoutingSong = document.getElementById("shoutingSong");
 
-            let myModal = new bootstrap.Modal(document.getElementById('myModal'));
-            myModal.show();
-
             $(".playAgain").click(function(){
                 $("body").load("playAgain.html");
             });
@@ -107,9 +85,6 @@
             $(".stopPlaying").click(function(){
                 $("body").load("bye.html");
             });
-
-            $(".startPlaying").click(function(){
-                myModal.hide();
 
                 zombieAttackSound.play();
 
@@ -248,14 +223,12 @@
                     $(".tank img:last").animate({bottom:"400px"},1500).fadeOut(500);
                 }
 
-   
-            });
-                $(".pauseGame").click(function(){
+                   $(".pauseGame").click(function(){
                     let gamePauseModal = new bootstrap.Modal(document.getElementById("gamePauseModal"));
                     gamePauseModal.show();
                 });
 
-                $(document).keydown(function(downkey){
+                $(document).keypress(function(downkey){
                     let downkeyCode = downkey.which || downkey.keyCode;
                     if(downkeyCode == 37)
                     {
@@ -280,7 +253,7 @@
                 
                 }); 
 
-                $(document).keydown(function(downkey){
+                $(document).keypress(function(downkey){
                     let downkeyCode = downkey.which || downkey.keyCode;
                     if(downkeyCode == 39)
                     {

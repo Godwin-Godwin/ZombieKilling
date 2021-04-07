@@ -1,46 +1,17 @@
-.gameMenu
+.contain
 {
     height: 580px;
     width: 400px;
     border-radius: 3%;
-    background: -webkit-linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url("images/Burning_Male_Child_Infected.gif");
-    background: -moz-linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url("images/Burning_Male_Child_Infected.gif");
-    background: -o-linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url("images/Burning_Male_Child_Infected.gif");
+    background: -webkit-linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)), url("images/Burning_Male_Child_Infected.gif");
+    background: -moz-linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)), url("images/Burning_Male_Child_Infected.gif");
+    background: -o-linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)), url("images/Burning_Male_Child_Infected.gif");
     background-size: 120% 100%;
     display: grid;
-    place-items: center;
-}
-
-.welcomePageButton
-{
-    width: 300px;
-    height: 100px;
-    background-image: url("images/tech_button2.png");
-    background-size: 100% 100%;
-    display: grid;
-    place-items: center;
-    color: cornsilk;
-    cursor: grabbing;
-    
-}
-
-.welcomePageButton:hover
-{
-    transform: scale(1.15);
+    align-items: center;
 }
 
 .startClick
 {
-    
-    z-index: 100;
-    border-radius: 5px;
-    position: absolute;
-    top: 40%;
-    left: 5%;
-    box-shadow: 1px 1px 30px black;
-    text-align: center;
-    background: -webkit-linear-gradient(left,rgb(158, 143, 143),rgb(240, 240, 191),rgb(223, 151, 151));
-    background: -moz-linear-gradient(left,rgb(158, 143, 143),rgb(240, 240, 191),rgb(223, 151, 151));
-    background: -o-linear-gradient(left,rgb(158, 143, 143),rgb(240, 240, 191),rgb(223, 151, 151));
+    color:slateblue;
 }
-

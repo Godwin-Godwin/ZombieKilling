@@ -4,17 +4,21 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="jquery-3.6.0.js"></script>
+    <link rel="stylesheet" href="bootstrap-5.0.0-beta2-dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="Font awesome/css/all.min.css">
     <title>Click to play</title>
+    <link rel="stylesheet" href="index.css" />
 </head>
 <body>
-    <div class="container">
-        <div class="startClick py-4"> >> TOUCHEZ L'ECRAN POUR COMMENCER << </div> 
+    <div class="container contain d-flex justify-content-center my-4">
+        <div class="startClick py-4 fas fa-play display-1">
     </div>
 
     <script>
         $(function(){
-            $("body").click(function(){  
-                $(this).load("menu.html");
+            $(".startClick").click(function(){  
+                $("body").load("menu.html");
             });
         });
     </script>

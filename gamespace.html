@@ -11,6 +11,7 @@
     <title>Zombie Killing</title>
 </head>
 <body>
+    <div id="text"></div>
     <div id="myModal" class="modal">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -26,14 +27,6 @@
                     <button class="stopPlaying btn btn-secondary">QUITTER</button>
                     <button class="startPlaying btn btn-secondary">GO POUR LA TUERIE</button>
                 </div>
-            </div>
-        </div>
-    </div>
-
-    <div id="gamePauseModal" class="modal">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-body d-flex justify-content-center">PAUSED</div>
             </div>
         </div>
     </div>
@@ -78,7 +71,7 @@
                     <div class="tank"></div>
                 </div>
                 
-            </div>
+            </div> 
         </div>
     </div>
     <audio id="zombieAttackSound" src="Audios/Group-Of-Zombies-Growling.mp3" loop></audio>
@@ -91,7 +84,6 @@
             
             let score = 0;
             let numberOfZombieKilled = 0;
-            let headCoordinatesTop = "";
             let zombieAttackSound = document.getElementById("zombieAttackSound");
             let lostSong = document.getElementById("lostSong");
             let shoutingSong = document.getElementById("shoutingSong");
@@ -113,9 +105,16 @@
                 zombieAttackSound.play();
 
                 let fallingNumber = 0;
-                let fallingTime = setInterval(headFalling, 2500);
-                let shoutingTime = setInterval(gunshot, 800);
-                let getPosition = setInterval(pos, 1000);      
+                let fallingTime = setInterval(headFalling, 700);
+                let shoutingTime = setInterval(gunshot, 700);
+                let getPosition = setInterval(pos, 100);      
+                let senderMovementTime = setInterval(senderMovement, 1000);
+                    
+
+                function senderMovement()
+                {  
+                    $(".Hole").animate({left:"+=250px"},750).animate({left:"-=250px"},750);
+                };
 
                 function headFalling()
                 {
@@ -128,13 +127,15 @@
                     Zombi.src = "images/teteZombie"+randNumber+".png";
                     Zombi.alt = "#";
                     document.querySelector(".Hole").appendChild(Zombi);
-                    $(".Hole img:last").animate({top:"440px",zIndex:"10"},1000).fadeOut(500);
-
+                    $(".Hole img:last").animate({top:"460px",zIndex:"10"},1200).fadeOut(500);
 
                 }
                 
+                
+
                 function pos()
                 {
+
                     var headPosition1 =  $(".Hole img:last").offset().top;
                     var headPosition2 =  $(".Hole img:last").offset().left;
                     var headPosition3 =  $(".Hole img:last").outerHeight();
@@ -148,22 +149,27 @@
                     var receptionHolePosition4 =  $(".receptionHole").outerWidth();
                     var receptionHolePlusHeihgt = receptionHolePosition1 + receptionHolePosition3;
                     var receptionHolePlusWidth = receptionHolePosition2 + receptionHolePosition4;
-                  
-                    if(!(headPlusHeihgt < receptionHolePosition1 || headPosition1 > receptionHolePlusHeihgt
-                    || headPosition2 > receptionHolePlusWidth || headPlusWidth < receptionHolePosition2)) 
+
+                    document.getElementById("text").textContent = headPlusHeihgt+ " "+ receptionHolePosition1;
+
+                    if((headPlusHeihgt > receptionHolePosition1 
+                   ))
+                        //!(headPlusHeihgt < receptionHolePosition1 || headPosition1 > receptionHolePlusHeihgt
+                    //|| headPosition2 > receptionHolePlusWidth || headPlusWidth < receptionHolePosition2)) 
                     {   
                         fallingNumber += 1; 
                                   
                         setTimeout(function(){
                             $("body").css("background-color","red")
-                        },100);
+                        },200);
                         setTimeout(function(){
                             $("body").css("background-color","white")
-                        },200);
-                        if(fallingNumber === 10)
+                        },300);
+                        if(fallingNumber == 10)
                         {
                             zombieAttackSound.pause();
                             shoutingSong.pause();
+                            clearInterval(senderMovementTime);  
                             clearInterval(shoutingTime);
                             clearInterval(fallingTime);
                             clearInterval(getPosition);
@@ -178,11 +184,10 @@
                             $(".playAgain").click(function(){
                                 gameOverModal.hide();
                                 lostSong.pause();
-                            });
-
-                            
+                            });    
                         }
                     }
+
 
                     var gunshotPosition1 = $(".tank img:first").offset().top;
                     var gunshotPosition2 = $(".tank img:first").offset().left;
@@ -191,8 +196,8 @@
                     var gunshotPlusHeihgt = gunshotPosition1 + gunshotPosition3;
                     var gunshotPlusWidth = gunshotPosition2 + gunshotPosition4;
                     
-                    if(!(headPlusHeihgt < gunshotPosition1 && headPosition1 > gunshotPlusHeihgt
-                    && headPosition2 > gunshotPlusWidth && headPlusWidth < gunshotPosition2))
+                    if((headPlusHeihgt > gunshotPosition1 
+                    && headPlusWidth > gunshotPosition2))
                     {
                         
                         $(".tank img:first").remove();
@@ -200,28 +205,27 @@
                         numberOfZombieKilled += 1;
                         score += 50;
                         document.getElementById("timeScore").textContent = score;
-                    }
-
-                         
+                    }       
                 }
                 
                 function gunshot()
                 {
-                    
+                    shoutingSong.play();
                     let gunshot = document.createElement("img");
                     gunshot.id = "gunshot";
                     gunshot.src = "images/balle_de_feu.png";
                     gunshot.alt = "#";
                     document.querySelector(".tank").appendChild(gunshot);
-                    shoutingSong.play();
-                    $(".tank img:last").animate({bottom:"400px"},1500).fadeOut(500);
+                    $(".tank img:last").animate({bottom:"420px"},600).fadeOut(100);
+                      
                 }
+
+
 
    
             });
                 $(".pauseGame").click(function(){
-                    let gamePauseModal = new bootstrap.Modal(document.getElementById("gamePauseModal"));
-                    gamePauseModal.show();
+                    alert("EN PAUSE");
                 });
 
                 $(document).keydown(function(downkey){
@@ -236,11 +240,11 @@
                         let tankPositionWidth =  $(".tank").outerWidth();
                         let tankPlusWidth = tankPositionLeft + tankPositionWidth;
 
-                        let answerForcasted = tankPositionLeft - 30 ;
+                        let answerForcasted = tankPositionLeft - 50 ;
                         
                         if(answerForcasted >= containerLeft)
                         {
-                            $(".tank").animate({left:"-=30px"},50);
+                            $(".tank").animate({left:"-=50px"},30);
                         }                
                         
                     } 
@@ -259,11 +263,11 @@
                         let tankPositionWidth =  $(".tank").outerWidth();
                         let tankPlusWidth = tankPositionLeft + tankPositionWidth;
 
-                        let answerForcasted = tankPlusWidth + 30 ;
+                        let answerForcasted = tankPlusWidth + 50 ;
                         
                         if(answerForcasted <= containerPlusWidth)
                         {
-                            $(".tank").animate({left:"+=30px"},50);   
+                            $(".tank").animate({left:"+=50px"},30);   
                         }
                         
                     }

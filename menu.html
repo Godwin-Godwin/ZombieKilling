@@ -15,8 +15,8 @@
   <div class="container d-flex justify-content-center">
     <div class="gameMenu mt-4">
       <div class="welcomePageButton newGameButton"> NOUVELLE PARTIE </div>
-      <div class="welcomePageButton continueButton"> CONTINUER </div>
-      <div class="welcomePageButton optionsButton"> OPTIONS </div> 
+      <div class="welcomePageButton optionsButton"> ACTIVER/DESACTIVER SON </div> 
+      <div class="welcomePageButton aboutButton"> A PROPOS </div>
       <div class="welcomePageButton exitButton"> QUITTER </div>
     </div>
   </div>
@@ -40,17 +40,26 @@
         $("body").fadeIn(1000);
       });
 
-      $(".continueButton").click(function(){
+      $(".aboutButton").click(function(){
         buttonMenuClickSong.play();
-        alert("Continue");
+        $(".gameMenu").css("background","rgb(199, 195, 224)");
+        $(".gameMenu").load("about.html");
       });
 
       $(".optionsButton").click(function(){
-        buttonMenuClickSong.play();
+        if(menuSong.paused)
+        {
+          menuSong.play();
+        }
+        else{
+          menuSong.pause();
+        }
+        
       });
 
       $(".exitButton").click(function(){
         buttonMenuClickSong.play();
+        $("body").load("bye.html");
         
       });
 

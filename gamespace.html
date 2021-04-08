@@ -23,8 +23,8 @@
                 <div id="zombieInModal" class="modal-body">
                     Votre objectif sera de protéger le camp (zone noire étoilée du bas) en tuant les zombies
                     matérialisés par leurs têtes qui descendent. Utiliser les touches directionnelles gauche et droite 
-                    de votre clavier pour guider le tireur. Vous perdrez lorsque vous aurez laissé passer 10 têtes de zombie
-                    dans le camp. En revanche, vous gagnerez lorsque vous aurez atteint le score maximal de 50000.
+                    de votre clavier pour guider le tireur. Vous perdrez lorsque vous aurez laissé passer des têtes de zombie
+                    dans le camp un certain nombre de fois (5 à 10). En revanche, vous gagnerez lorsque vous aurez atteint le score maximal de 10000.
                 </div>
                 <div class="modal-footer d-flex justify-content-between">
                     <button class="stopPlaying btn btn-secondary">QUITTER</button>
@@ -34,11 +34,30 @@
         </div>
     </div>
 
+    <div id="wonGame" class="modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <p class="modal-header d-flex justify-content-center"> Félicitation vous avez gagné. </p>
+                <div class="modal-body won-modal-body">
+                    <div class="grant">
+                        <div class="numberOfZombieKilled ">Nombre de Zombie tués : <span id="wonSpanNumberOfZombieKilled"></span></div>
+                        <div class="totalScore d-flex justify-content-end">Score Total : <span id="wonSpanScore"></span></div>
+                    </div>
+                    <div class="applauding-emoticon"></div>
+                </div>
+                <div class="modal-footer d-flex justify-content-between">
+                    <button class="stopPlaying btn btn-secondary">QUITTER</button>
+                    <button class="playAgain btn btn-secondary">REJOUER</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div id="gameOverModal" class="modal">
         <div class="modal-dialog">
             <div class="modal-content">
                 <p class="modal-header d-flex justify-content-center"> GAME OVER </p>
-                <div class="modal-body">
+                <div class="modal-body gameover-modal-body">
                     <div class="grant">
                         <div class="numberOfZombieKilled ">Nombre de Zombie tués : <span id="spanNumberOfZombieKilled"></span></div>
                         <div class="totalScore d-flex justify-content-end">Score Total : <span id="spanScore"></span></div>
@@ -57,7 +76,7 @@
         <div class="gameSpace mt-4">
             <div class="statusBar">
                 <div class="area1">
-                    <div class="GoBackMenu px-1"> <button class="btn btn-outline-secondary GoBackMenuButton"> << </button> </div>
+                    <div class="GoBackMenu px-1"> </div>
                     <div class="gameName">Zombie Killing</div>
                 </div>
                 <div class="area2">
@@ -108,7 +127,7 @@
                 zombieAttackSound.play();
 
                 let fallingNumber = 0;
-                let fallingTime = setInterval(headFalling, 700);
+                let fallingTime = setInterval(headFalling, 650);
                 let shoutingTime = setInterval(gunshot, 700);
                 let getPosition = setInterval(pos, 100);      
                 let senderMovementTime = setInterval(senderMovement, 1000);
@@ -130,7 +149,7 @@
                     Zombi.src = "images/teteZombie"+randNumber+".png";
                     Zombi.alt = "#";
                     document.querySelector(".Hole").appendChild(Zombi);
-                    $(".Hole img:last").animate({top:"460px",zIndex:"10"},1200).fadeOut(500);
+                    $(".Hole img:last").animate({top:"420px",zIndex:"10"},1200).fadeOut(500);
 
                 }
                 
@@ -154,7 +173,7 @@
                     var receptionHolePlusWidth = receptionHolePosition2 + receptionHolePosition4;
 
 
-                    if((headPlusHeihgt > receptionHolePosition1))
+                    if(headPlusHeihgt >= receptionHolePosition1)
                     {   
                         fallingNumber += 1; 
                                   
@@ -197,13 +216,34 @@
                     
                     if((headPlusHeihgt > gunshotPosition1 
                     && headPlusWidth > gunshotPosition2))
-                    {
-                        
+                    {  
                         $(".tank img:first").remove();
                         $(".Hole img:last").remove();
                         numberOfZombieKilled += 1;
                         score += 50;
                         document.getElementById("timeScore").textContent = score;
+                      
+                        if(score == 10000)
+                        {
+                            zombieAttackSound.pause();
+                            shoutingSong.pause();
+                            clearInterval(senderMovementTime);  
+                            clearInterval(shoutingTime);
+                            clearInterval(fallingTime);
+                            clearInterval(getPosition);
+                            let wonGame = new bootstrap.Modal(document.getElementById('wonGame'));
+                            wonGame.show();
+                            
+                            document.getElementById("wonSpanNumberOfZombieKilled").textContent = " " + numberOfZombieKilled;
+                            document.getElementById("wonSpanScore").textContent = "  " + score;
+                            lostSong.load();
+                            lostSong.play();
+                            $(".tank > img").remove();
+                            $(".playAgain").click(function(){
+                                wonGame.hide();
+                                lostSong.pause();
+                            });    
+                        }
                     } 
            
                 }
@@ -220,7 +260,7 @@
                       
                 }
 
-
+                
 
    
             });

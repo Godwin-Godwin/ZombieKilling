@@ -110,9 +110,6 @@
             let lostSong = document.getElementById("lostSong");
             let shoutingSong = document.getElementById("shoutingSong");
 
-            let myModal = new bootstrap.Modal(document.getElementById('myModal'));
-            myModal.show();
-
             $(".playAgain").click(function(){
                 $("body").load("playAgain.html");
             });
@@ -120,9 +117,6 @@
             $(".stopPlaying").click(function(){
                 $("body").load("bye.html");
             });
-
-            $(".startPlaying").click(function(){
-                myModal.hide();
 
                 zombieAttackSound.play();
 
@@ -260,15 +254,12 @@
                       
                 }
 
-                
-
-   
-            });
+            
                 $(".pauseGame").click(function(){
                     alert("EN PAUSE");
                 });
 
-                $(document).keydown(function(downkey){
+                $(document).keypress(function(downkey){
                     let downkeyCode = downkey.which || downkey.keyCode;
                     if(downkeyCode == 37)
                     {
@@ -291,7 +282,7 @@
                 
                 }); 
 
-                $(document).keydown(function(downkey){
+                $(document).keypress(function(downkey){
                     let downkeyCode = downkey.which || downkey.keyCode;
                     if(downkeyCode == 39)
                     {
